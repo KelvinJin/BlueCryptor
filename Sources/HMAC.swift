@@ -260,7 +260,7 @@ public class HMAC : Updateable {
     ///
     /// - Returns: The 'in-progress' calculated HMAC
     ///
-	public func update(from buffer: UnsafePointer<Void>, byteCount: size_t) -> Self? {
+	public func update(from buffer: UnsafeRawPointer, byteCount: size_t) -> Self? {
 		
 		#if os(macOS)
 	        CCHmacUpdate(context, buffer, byteCount)

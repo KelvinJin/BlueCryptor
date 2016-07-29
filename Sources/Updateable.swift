@@ -35,7 +35,7 @@ public protocol Updateable {
 	///
     /// - Returns: `Self` if no error for optional chaining, nil otherwise
 	///
-    func update(from buffer: UnsafePointer<Void>, byteCount: size_t) -> Self?
+    func update(from buffer: UnsafeRawPointer, byteCount: size_t) -> Self?
 }
 
 ///
@@ -49,9 +49,8 @@ extension Updateable {
     ///
 	/// - Returns: Optional `Self` or nil
 	///
-	public func update(data: NSData) -> Self? {
-		
-        _ = update(from: data.bytes, byteCount: size_t(data.length))
+	public func update(data: Data) -> Self? {
+        _ = update(from: NSData(data: data).bytes, byteCount: size_t(data.count))
         return self.status == .success ? self : nil
     }
 	

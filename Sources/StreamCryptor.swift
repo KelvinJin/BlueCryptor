@@ -688,7 +688,7 @@ public class StreamCryptor {
 		
         let dataOutAvailable = byteArrayOut.count
         var dataOutMoved = 0
-        _ = update(bufferIn: UnsafePointer<UInt8>(dataIn.bytes), byteCountIn: dataIn.length, bufferOut: &byteArrayOut, byteCapacityOut: dataOutAvailable, byteCountOut: &dataOutMoved)
+        _ = update(bufferIn: dataIn.bytes, byteCountIn: dataIn.length, bufferOut: &byteArrayOut, byteCapacityOut: dataOutAvailable, byteCountOut: &dataOutMoved)
         return (dataOutMoved, self.status)
     }
 	
@@ -761,7 +761,7 @@ public class StreamCryptor {
 	///
 	///	- Returns: Status of the update
 	///
-	public func update(bufferIn: UnsafePointer<UInt8>, byteCountIn: Int, bufferOut: UnsafeMutablePointer<UInt8>, byteCapacityOut: Int, byteCountOut: inout Int) -> Status {
+	public func update(bufferIn: UnsafeRawPointer, byteCountIn: Int, bufferOut: UnsafeMutablePointer<UInt8>, byteCapacityOut: Int, byteCountOut: inout Int) -> Status {
 		
         if self.status == .success {
 			
