@@ -53,6 +53,11 @@ extension Updateable {
         _ = update(from: NSData(data: data).bytes, byteCount: size_t(data.count))
         return self.status == .success ? self : nil
     }
+
+    public func update(data: NSData) -> Self? {
+        _ = update(from: data.bytes, byteCount: size_t(data.length))
+        return self.status == .success ? self : nil
+    }
 	
     ///
     /// Updates the current calculation with data contained in a byte array.

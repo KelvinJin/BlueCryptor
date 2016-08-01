@@ -782,10 +782,10 @@ public class StreamCryptor {
 				switch self.operation {
 				
 				case .encrypt:
-					rawStatus = EVP_EncryptUpdate(self.context, bufferOut, &outLength, bufferIn, Int32(byteCountIn))
+					rawStatus = EVP_EncryptUpdate(self.context, bufferOut, &outLength, bufferIn.bindMemory(to: UInt8.self, capacity: byteCountIn), Int32(byteCountIn))
 					
 				case .decrypt:
-					rawStatus = EVP_DecryptUpdate(self.context, bufferOut, &outLength, bufferIn, Int32(byteCountIn))
+					rawStatus = EVP_DecryptUpdate(self.context, bufferOut, &outLength, bufferIn.bindMemory(to: UInt8.self, capacity: byteCountIn), Int32(byteCountIn))
 				}
 			
 				byteCountOut = Int(outLength)

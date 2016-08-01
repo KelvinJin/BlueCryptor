@@ -373,7 +373,7 @@ class CryptorTests: XCTestCase {
 	
 	func test_Digest_MD5_NSData() {
 		let qbfData : NSData = CryptoUtils.data(from: self.qbfBytes)
-		let digest = Digest(using: .md5).update(data: qbfData as Data)?.final()
+		let digest = Digest(using: .md5).update(data: qbfData)?.final()
 		
 		XCTAssertEqual(digest!, qbfMD5, "PASS")
 	}
